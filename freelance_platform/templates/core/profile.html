@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .logout-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Welcome, {{ user.username }}</h2>
+
+        <div class="section">
+            <p><span class="label">Email:</span> {{ user.email }}</p>
+            <p><span class="label">Joined:</span> {{ user.date_joined }}</p>
+        </div>
+
+        {% if user.profile %}
+        <div class="section">
+            <p><span class="label">Bio:</span> {{ user.profile.bio }}</p>
+            <p><span class="label">Skills:</span> {{ user.profile.skills }}</p>
+            <p><span class="label">Freelancer:</span> {{ user.profile.is_freelancer }}</p>
+        </div>
+        {% endif %}
+
+        <a class="logout-link" href="{% url 'logout' %}">Log Out</a>
+    </div>
+</body>
+
+</html>

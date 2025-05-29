@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Projects</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .project {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+
+        .project:last-child {
+            border-bottom: none;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .budget {
+            font-size: 16px;
+            color: #28a745;
+            margin-left: 10px;
+        }
+
+        .desc {
+            margin: 10px 0;
+            color: #444;
+        }
+
+        .bid-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .bid-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>All Projects</h2>
+        {% for project in projects %}
+        <div class="project">
+            <div>
+                <span class="title">{{ project.title }}</span>
+                <span class="budget">${{ project.budget }}</span>
+            </div>
+            <p class="desc">{{ project.description }}</p>
+            <a href="{% url 'bid_project' project.id %}" class="bid-link">Bid on this project</a>
+        </div>
+        {% empty %}
+        <p>No projects available at the moment.</p>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
